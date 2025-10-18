@@ -6,6 +6,53 @@
     <title>Shared-Bookmarks/Zohreh Kazemianpour</title>
 </head>
 <body>
-    
+    <h1>Shared Bookmarks</h1>
+    <section>
+      <h2>User Selection</h2>
+
+      <label for="user">Choose a user to view their bookmarks:</label>
+      <select name="user" id="user">
+        <option value="" disabled selected>Select a user...</option>
+      </select>
+    </section>
+     <section>
+      <h2>Bookmarks</h2>
+      <div id="book-mark" aria-live="polite"></div>
+    </section>
+    <section>
+      <h2>Add New Bookmark</h2>
+      <form id="bookmark-form">
+        <label for="url">URL</label>
+        <input
+          type="url"
+          name="url"
+          id="url"
+          required
+          placeholder="https://example.com"
+        />
+
+        <label for="title">title</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          required
+          placeholder="Enter bookmark title"
+        />
+        <label for="description">description</label>
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="10"
+          required
+          placeholder="Describe this bookmark..."
+        ></textarea>
+
+        <button id="btn" type="submit">Add new bookmark</button>
+      </form>
+    </section>
+
+    <script type="module" src="script.js"></script>
 </body>
 </html>

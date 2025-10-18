@@ -1,0 +1,42 @@
+button,
+input,
+select,
+textarea {
+  min-height: 48px;
+  font-size: 16px;
+  padding: 8px;
+}
+
+button {
+  min-width: 48px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+/* Form layout for better spacing */
+input,
+textarea,
+select {
+  display: block;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 400px;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+
+/* Section spacing */
+section {
+  margin-bottom: 32px;
+}
+
+/* Bookmark links - ensure adequate touch targets */
+#book-mark a {
+  display: inline-block;
+  min-height: 24px;
+  padding: 4px 0;
+}

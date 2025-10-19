@@ -1,4 +1,4 @@
-import { getData, setData, getUserIds, clearData } from "./storage.js";
+import { getData, setData, getUserIds} from "./storage.js";
 import { sortBookmarksByDate } from "./utils.js";
 
 ////DOM references

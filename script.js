@@ -3,6 +3,10 @@ import { getData, setData, getUserIds, clearData } from "./storage.js";
 ////DOM references
 let userDropdown;
 let bookmarkContainer;
+let bookmarkForm;
+let urlInput;
+let titleInput;
+let descriptionInput;
 
 //data
 const userIds = getUserIds();
@@ -26,8 +30,7 @@ function createBookmarkElement(bookmark) {
 
   const bookmarkDescriptionEl = document.createElement("p");
 
-  bookmarkDescriptionEl.innerText =
-    bookmark.description || "No description provided";
+  bookmarkDescriptionEl.innerText = bookmark.description;
   const dateEl = document.createElement("small");
   const bookmarkDate = new Date(bookmark.timestamp); // converts number to date object
   dateEl.textContent = `added on ${bookmarkDate.toLocaleString()}`;
@@ -54,18 +57,50 @@ function showBookmarksForSelectedUser(userId) {
   }
 }
 
-function handelUserSelect(event) {
+function handleUserSelect(event) {
   const selectedUser = event.target.value;
   showBookmarksForSelectedUser(selectedUser);
+}
+
+function handleUserSubmit(event) {
+  event.preventDefault();
+
+  const selectedUser = userDropdown.value;
+  const urlInputValue = urlInput.value;
+  const titleInputValue = titleInput.value;
+  const descriptionInputValue = descriptionInput.value;
+
+  if (!selectedUser) {
+    alert("Please select a user first");
+    return;
+  }
+  const existingBookmarks = getData(selectedUser) || [];
+  const newBookmark = {
+    url: urlInputValue,
+    title: titleInputValue,
+    description: descriptionInputValue,
+    timestamp: Date.now(),
+  };
+  existingBookmarks.push(newBookmark);
+  setData(selectedUser, existingBookmarks);
+  showBookmarksForSelectedUser(selectedUser);
+  bookmarkForm.reset();
 }
 
 // Initialize application
 function setUp() {
   userDropdown = document.getElementById("user");
   bookmarkContainer = document.getElementById("book-mark");
+  bookmarkForm = document.getElementById("bookmark-form");
+  urlInput = document.getElementById("url");
+  titleInput = document.getElementById("title");
+  descriptionInput = document.getElementById("description");
+
   //event listener
-  userDropdown.addEventListener("change", handelUserSelect);
+  userDropdown.addEventListener("change", handleUserSelect);
   populateUserDropdown();
+
+  bookmarkForm.addEventListener("submit", handleUserSubmit);
 }
 
 window.onload = setUp;

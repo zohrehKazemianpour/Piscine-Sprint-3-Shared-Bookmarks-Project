@@ -1,4 +1,5 @@
 import { getData, setData, getUserIds, clearData } from "./storage.js";
+import { sortBookmarksByDate } from "./utils.js";
 
 ////DOM references
 let userDropdown;
@@ -48,7 +49,7 @@ function showBookmarksForSelectedUser(userId) {
     bookmarkContainer.innerHTML = "<li>No bookmarks found</li>";
   } else {
     bookmarkContainer.innerHTML = "";
-    const sortedData = data.sort((a, b) => b.timestamp - a.timestamp);
+    const sortedData = sortBookmarksByDate(data);
 
     sortedData.forEach((bookmark) => {
       const bookmarkElement = createBookmarkElement(bookmark);

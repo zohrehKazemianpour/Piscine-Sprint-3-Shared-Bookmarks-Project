@@ -45,7 +45,7 @@ function createBookmarkElement(bookmark) {
 function showBookmarksForSelectedUser(userId) {
   const data = getData(userId);
 
-  if (!data || data.length === 0) {
+  if (!Array.isArray(data) || data.length === 0) { //add validation make sure data is an array
     bookmarkContainer.innerHTML = "<li>No bookmarks found</li>";
   } else {
     bookmarkContainer.innerHTML = "";
